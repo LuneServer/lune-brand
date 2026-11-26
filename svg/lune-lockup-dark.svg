@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 216 64" fill="none" role="img" aria-label="Lune">
+  <defs>
+    <linearGradient id="lune-horizon-dark" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="65%" stop-color="#E5E5EA" />
+      <stop offset="100%" stop-color="#9A9AA3" />
+    </linearGradient>
+  </defs>
+  <g transform="translate(4 4) scale(0.875)">
+    <path d="M 13.11 33.5 A 19 19 0 1 1 50.89 33.5 Z" fill="url(#lune-horizon-dark)" />
+    <rect x="10" y="37.5" width="44" height="3.2" rx="1.6" fill="url(#lune-horizon-dark)" opacity="0.9" />
+    <rect x="17" y="43.7" width="30" height="2.8" rx="1.4" fill="url(#lune-horizon-dark)" opacity="0.55" />
+    <rect x="24" y="49.5" width="16" height="2.4" rx="1.2" fill="url(#lune-horizon-dark)" opacity="0.28" />
+  </g>
+  <text x="72" y="44" fill="#F5F5F7" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', 'Segoe UI', sans-serif" font-size="36" font-weight="600" letter-spacing="-0.025em">Lune</text>
+</svg>
