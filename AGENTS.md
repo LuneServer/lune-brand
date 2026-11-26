@@ -2,6 +2,8 @@
 
 This document describes the architecture, asset inventory, brand rules, and downstream sync workflow for **Lune Brand** (`github.com/LuneServer/lune-brand`).
 
+> **Mandatory Branch Workflow:** Never commit directly to `main` or pile unrelated changes onto an existing branch. Start every distinct task (asset, token, or doc change) on its own branch from an up-to-date `main` (`git switch -c <type>/<short-topic>`, e.g. `feat/mono-mark`). For parallel or concurrent work, or when the working tree already holds uncommitted changes from another task, use a separate worktree (`git worktree add ../lune-brand-<topic> -b <type>/<topic> main`) instead of switching branches in place. Keep each branch scoped to one concern, run `git status` before editing to confirm what you're building on, and when a task spans repos (`lune`, `lune-web`, `lune-brand`), use a same-named branch in each. Do not merge, rebase onto, or push unless the user asks.
+
 > **Mandatory Maintenance Rule:** Whenever you add, rename, or modify logos, icons, color tokens, typography rules, or radii in this repository, **you must update this `AGENTS.md` and [`BRAND.md`](BRAND.md) in the same change**, and keep `tokens.css` and `tokens.json` strictly in sync. Remember to propagate updates to downstream consumers (`lune-web`, `lune`, and future native clients).
 
 ---
