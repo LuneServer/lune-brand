@@ -2,6 +2,8 @@
 
 This document describes the architecture, asset inventory, brand rules, and downstream sync workflow for **Lune Brand** (`github.com/LuneServer/lune-brand`).
 
+> **Mandatory Branch Workflow:** Never commit directly to `main` or pile unrelated changes onto an existing branch. Start every distinct task (asset, token, or doc change) on its own branch from an up-to-date local `main` (fetch and fast-forward `main` first, then `git switch -c <type>/<short-topic> main`, e.g. `feat/mono-mark`; if local `main` cannot fast-forward to `origin/main` or has commits not on `origin/main`, use the freshly fetched `origin/main` as the start point instead). For parallel or concurrent work, or when the working tree already holds uncommitted changes from another task, use a separate worktree (`git worktree add ../lune-worktrees/<topic>/lune-brand -b <type>/<topic> main`, substituting the freshly fetched `origin/main` as the base under the same fallback) instead of switching branches in place; for cross-repo tasks put all three worktrees under the same `../lune-worktrees/<topic>/` parent (`lune`, `lune-web`, `lune-brand`) so the `../lune`/`../lune-web` paths below resolve to the task branches. Keep each branch scoped to one concern, run `git status` before editing to confirm what you're building on, and when a task spans repos (`lune`, `lune-web`, `lune-brand`), use a same-named branch in each. Do not merge, rebase onto, or push unless the user asks.
+
 > **Mandatory Maintenance Rule:** Whenever you add, rename, or modify logos, icons, color tokens, typography rules, or radii in this repository, **you must update this `AGENTS.md` and [`BRAND.md`](BRAND.md) in the same change**, and keep `tokens.css` and `tokens.json` strictly in sync. Remember to propagate updates to downstream consumers (`lune-web`, `lune`, and future native clients).
 
 ---
@@ -81,7 +83,7 @@ Whenever updating assets or tokens in `lune-brand`:
 
 1. **Keep token formats synchronized:** Update both `tokens.css` and `tokens.json` together, and reflect any new roles or hex changes in `BRAND.md`.
 2. **Keep raster exports synchronized:** If `svg/lune-app-icon.svg` or `svg/lune-avatar.svg` changes, regenerate all corresponding sizes in `png/` (`1024`, `512`, `192`).
-3. **Propagate to `../lune-web`:**
+3. **Propagate to `../lune-web`:** Before copying, switch `../lune-web` to the same-named branch (or use the matching worktree when that checkout has uncommitted changes from another task) so the copies land on the task branch instead of overwriting unrelated work.
    - Copy `tokens.css` -> `../lune-web/src/tokens.css` and update `@theme` colors in `../lune-web/src/index.css` if palette hexes changed.
    - Copy updated `svg/lune-mark.svg` -> `../lune-web/public/lune-mark.svg`, `svg/lune-mark-light.svg` -> `../lune-web/public/lune-mark-light.svg`, and `svg/lune-favicon.svg` -> `../lune-web/public/favicon.svg`.
 4. **Check `../lune` references:** Preserve stable filenames referenced externally (e.g., `png/lune-avatar-512.png` used in `../lune/deploy/unraid/lune.xml`).
